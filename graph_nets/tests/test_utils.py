@@ -48,7 +48,7 @@ def assert_new_op_prefixes(test, expected_prefix, assert_some_new_ops=True):
 
 
 def mask_leading_dimension(tensor):
-  return tf.placeholder_with_default(tensor,
+  return tf.compat.v1.placeholder_with_default(tensor,
                                      [None] + tensor.get_shape().as_list()[1:])
 
 

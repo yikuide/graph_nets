@@ -624,7 +624,7 @@ class GraphsCompletionTests(test_utils.GraphsTest, parameterized.TestCase):
       g.pop("edges")
     graphs_tuple = utils_tf.data_dicts_to_graphs_tuple(self.graphs_dicts_in)
     graphs_tuple = graphs_tuple._replace(
-        n_edge=tf.placeholder_with_default(
+        n_edge=tf.compat.v1.placeholder_with_default(
             graphs_tuple.n_edge, shape=graphs_tuple.n_edge.get_shape()))
     n_edges = np.sum(self.reference_graph.n_edge)
     graphs_tuple = utils_tf.set_zero_edge_features(graphs_tuple, edge_size)
@@ -652,7 +652,7 @@ class GraphsCompletionTests(test_utils.GraphsTest, parameterized.TestCase):
     graphs_tuple = utils_tf.data_dicts_to_graphs_tuple(self.graphs_dicts_in)
     # Hide global shape information
     graphs_tuple = graphs_tuple._replace(
-        n_node=tf.placeholder_with_default(graphs_tuple.n_node, shape=[None]))
+        n_node=tf.compat.v1.placeholder_with_default(graphs_tuple.n_node, shape=[None]))
     n_graphs = self.reference_graph.n_edge.shape[0]
     graphs_tuple = utils_tf.set_zero_global_features(graphs_tuple, global_size)
     with self.test_session() as sess:
@@ -680,7 +680,7 @@ class GraphsCompletionTests(test_utils.GraphsTest, parameterized.TestCase):
       g.pop("nodes")
     graphs_tuple = utils_tf.data_dicts_to_graphs_tuple(self.graphs_dicts_in)
     graphs_tuple = graphs_tuple._replace(
-        n_node=tf.placeholder_with_default(
+        n_node=tf.compat.v1.placeholder_with_default(
             graphs_tuple.n_node, shape=graphs_tuple.n_node.get_shape()))
     n_nodes = np.sum(self.reference_graph.n_node)
     graphs_tuple = utils_tf.set_zero_node_features(graphs_tuple, node_size)
@@ -1021,7 +1021,7 @@ class TestNumGraphs(test_utils.GraphsTest):
     self.assertEqual(3, utils_tf.get_num_graphs(graph))
 
   def test_num_graphs_dynamic(self):
-    n_node_placeholder = tf.placeholder(tf.int32, [None])
+    n_node_placeholder = tf.compat.v1.placeholder(tf.int32, [None])
     graph = self.empty_graph.replace(n_node=n_node_placeholder)
     num_graphs = utils_tf.get_num_graphs(graph)
     with self.test_session() as sess:

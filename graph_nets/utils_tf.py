@@ -188,7 +188,7 @@ def _build_placeholders_from_specs(dtypes,
       shape = list(shape)
       if field not in [N_NODE, N_EDGE, GLOBALS] or force_dynamic_num_graphs:
         shape[0] = None
-      dct[field] = tf.placeholder(dtype, shape=shape, name=field)
+      dct[field] = tf.compat.v1.placeholder(dtype, shape=shape, name=field)
 
   return graphs.GraphsTuple(**dct)
 

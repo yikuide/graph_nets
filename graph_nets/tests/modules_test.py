@@ -66,7 +66,7 @@ SMALL_GRAPH_4 = {
 
 
 def _mask_leading_dimension(tensor):
-  return tf.placeholder_with_default(tensor,
+  return tf.compat.v1.placeholder_with_default(tensor,
                                      [None] + tensor.get_shape().as_list()[1:])
 
 

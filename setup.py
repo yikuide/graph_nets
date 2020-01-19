@@ -26,7 +26,7 @@ Tensorflow and Sonnet.
 """
 
 setup(
-    name="graph_nets",
+    name="graph_nets_compat",
     version="1.0.6.dev",
     description="Library for building graph networks in Tensorflow and Sonnet.",
     long_description=description,
@@ -39,7 +39,7 @@ setup(
     # be installed separately (See README).
     install_requires=[
         "absl-py",
-        "dm-sonnet<2",
+        "dm-sonnet>=2.0.0b0",
         "future",
         "networkx",
         "numpy",
